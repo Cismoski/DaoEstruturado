@@ -3,36 +3,59 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.utfpr.dao;
+package dao;
 
-import br.edu.utfpr.modelo.Pessoa;
+import modelo.Pessoa;
 
 /**
  *
  * @author UTFPR
  */
-public class PessoaDaoVetor implements Dao {
+public class PessoaDaoVetor implements Dao{
 
     private Pessoa lista[];
+    private int i;
     
-    public PessoaDaoVetor(){
-        lista = new Pessoa[5];
+
+    public PessoaDaoVetor(int i) {
+       lista = new Pessoa[5];
+       this.i = i;
     }
     
     @Override
     public void adicionar(Pessoa p) {
-    
+          if(i <= 5){
+             lista[i] = p; 
+             i++;
+              System.out.println("Adicionando " + p.getNome());
+        }
     }
 
     @Override
     public void remover(Pessoa p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      // arrumar o remover
+        
+        if(i > 0){
+            for(int cont=0;cont<i;cont++){
+                if(lista[cont] == p){
+                    System.out.println("Removendo " + p.getNome());
+                    i--;
+                }else if(lista[cont] == null){
+                    
+                }
+            }            
+        }
+        
+        
     }
 
     @Override
     public void listarTudo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            for(int cont=0;cont<i;cont++){
+                if(lista[cont] != null){
+                     System.out.println(lista[cont]);
+                }
+            }
+    
     }
-    
-    
 }
