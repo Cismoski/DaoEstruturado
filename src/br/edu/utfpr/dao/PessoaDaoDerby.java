@@ -8,10 +8,10 @@ package br.edu.utfpr.dao;
 import br.edu.utfpr.modelo.Pessoa;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import jdk.nashorn.internal.objects.NativeArray;
+
 
 /**
  *
@@ -68,20 +68,19 @@ public class PessoaDaoDerby implements Dao {
 
     @Override
     public void listarTudo() {
-        ArrayList dados;
         
-        dados = new ArrayList<>();
+        String instrucao = "SELECT * FROM PESSOA";
         // Fazer array pra nome, idade e sobrenome.
         try{
-           for(int i=0;i<5;i++){
-            dados.add(stmt.executeUpdate("SELECT "+i+" FROM #"));
-           }
+           
+        ResultSet rs = stmt.executeQuery(instrucao);
+        while(rs.next()){
+            System.out.println("Nome: " + rs.getString("NOME") + " Sobrenome: " + rs.getString("SOBRENOME") + " Idade: " + rs.getString("IDADE"));
+            
+        }  
        }catch(SQLException se){
            System.out.println("Mensagem: " + se.getMessage());
        }
-        for (Object dado : dados) {
-            System.out.println(dado);
-        }
     }
  }
 

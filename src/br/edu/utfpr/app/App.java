@@ -21,10 +21,12 @@ public class App {
         Pessoa pedro = new Pessoa("Pedro","Silva",15);
         Dao dao = new PessoaDaoDerby();
         
-        //dao.adicionar(joao);
-       // dao.adicionar(pedro);
-        
+       dao.adicionar(joao);
+       dao.adicionar(pedro);
        dao.remover(pedro);
+       dao.remover(joao);
+        
+       
        dao.listarTudo();
         
       //  dao.adicionar(joao);
